@@ -28,7 +28,7 @@ const BigChartBox = () => {
 
   return (
     <div className="w-full h-full flex flex-col justify-between">
-      <h1 className="text-lg font-bold">User Analytics</h1>
+      <h1 className="text-lg font-bold"> Streaming Analytics</h1>
       <div className="w-full h-[300px]">
         <ResponsiveContainer width="99%" height="100%">
           <AreaChart
