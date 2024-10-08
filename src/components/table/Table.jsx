@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { Direction, Pagination, InputField } from "../index";
-import usePagination from "../../hook/pagination/usePagination"; 
-import { FaEye } from 'react-icons/fa'; 
-import { Link } from "react-router-dom"; 
+import usePagination from "../../hook/pagination/usePagination";
+import { FaEye } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const Table = ({ data }) => {
   if (!data) return null;
@@ -20,7 +20,7 @@ const Table = ({ data }) => {
     { id: 3, KEY: "artist_name", LABEL: "Artist" },
     { id: 4, KEY: "date_of_stream", LABEL: "Date Streamed" },
     { id: 5, KEY: "streams", LABEL: "Stream Count" },
-    { id: 6, KEY: "artist_id", LABEL: "Artist ID" }, // Keep this for display
+    { id: 6, KEY: "artist_id", LABEL: "Artist ID" },
   ];
 
   const handleHeaderClick = (header) => {
@@ -35,30 +35,17 @@ const Table = ({ data }) => {
     }));
   };
 
-  const getSortedArray = (arrayToSort) => {
-    return [...arrayToSort].sort((a, b) => {
-      const aValue = a[sort.keyToSort];
-      const bValue = b[sort.keyToSort];
-
-      if (typeof aValue === "string" && typeof bValue === "string") {
-        return sort.direction === "asc"
-          ? aValue.localeCompare(bValue, undefined, { sensitivity: "base" })
-          : bValue.localeCompare(aValue, undefined, { sensitivity: "base" });
-      } else {
-        return sort.direction === "asc" ? aValue - bValue : bValue - aValue;
-      }
-    });
-  };
-
-  const filteredData = data.filter((item) => {
-    return (
+  const filteredData = data.filter(
+    (item) =>
       item.artist_name.toLowerCase().includes(filter.artist.toLowerCase()) &&
       item.song_name.toLowerCase().includes(filter.songName.toLowerCase())
-    );
-  });
+  );
 
-  const sortedData = getSortedArray(filteredData.length ? filteredData : data);
-  const { currentPage, totalPages, currentItems, paginate } = usePagination(sortedData, itemsPerPage);
+  const sortedData = filteredData.length ? filteredData : data;
+  const { currentPage, totalPages, currentItems, paginate } = usePagination(
+    sortedData,
+    itemsPerPage
+  );
 
   return (
     <div className="p-6 bg-white shadow-lg rounded-lg">
@@ -69,7 +56,7 @@ const Table = ({ data }) => {
           value={filter.artist}
           onChange={(e) => {
             setFilter({ ...filter, artist: e.target.value });
-            paginate(1); 
+            paginate(1);
           }}
         />
         <InputField
@@ -92,33 +79,51 @@ const Table = ({ data }) => {
                   key={header.id}
                   className="px-4 py-2 text-sm font-medium cursor-pointer"
                   onClick={() => handleHeaderClick(header)}
-                  aria-sort={sort.keyToSort === header.KEY ? sort.direction : "none"}
+                  aria-sort={
+                    sort.keyToSort === header.KEY ? sort.direction : "none"
+                  }
                 >
                   <div className="flex items-center space-x-1">
                     <span>{header.LABEL}</span>
-                    {header.KEY === sort.keyToSort && <Direction direction={sort.direction} />}
+                    {header.KEY === sort.keyToSort && (
+                      <Direction direction={sort.direction} />
+                    )}
                   </div>
                 </th>
               ))}
             </tr>
           </thead>
-
           <tbody className="bg-white divide-y divide-gray-200">
             {currentItems.length > 0 ? (
               currentItems.map((row) => (
-                <tr key={row.song_id} className="hover:bg-gray-50 transition-colors">
+                <tr
+                  key={row.song_id}
+                  className="hover:bg-gray-50 transition-colors"
+                >
                   {headers.map((header) => (
-                    <td key={header.id} className="px-4 py-2 text-sm text-gray-700">
+                    <td
+                      key={header.id}
+                      className="px-4 py-2 text-sm text-gray-700"
+                    >
                       {header.KEY === "artist_name" ? (
                         <div className="flex items-center">
-                          <img src={row.image_url} alt={row.artist_name} className="w-10 h-10 rounded-full mr-3 object-cover" />
+                          <img
+                            src={row.image_url}
+                            alt={row.artist_name}
+                            className="w-10 h-10 rounded-full mr-3 object-cover"
+                          />
                           <span>{row.artist_name}</span>
                         </div>
                       ) : header.KEY === "artist_id" ? (
                         <div className="flex items-center">
-                          <span className="mr-2 w-10 text-right">{row.artist_id}</span>
-                          <Link to={`/artists/${row.artist_id}`} className="ml-2  text-blue-500 hover:underline">
-                            <FaEye className="text-lg"/> 
+                          <span className="mr-2 w-10 text-right">
+                            {row.artist_id}
+                          </span>
+                          <Link
+                            to={`/artists/${row.artist_id}`}
+                            className="ml-2 text-blue-500 hover:underline"
+                          >
+                            <FaEye className="text-lg" />
                           </Link>
                         </div>
                       ) : (
@@ -130,7 +135,10 @@ const Table = ({ data }) => {
               ))
             ) : (
               <tr>
-                <td colSpan={headers.length} className="px-4 py-2 text-sm text-gray-700 text-center">
+                <td
+                  colSpan={headers.length}
+                  className="px-4 py-2 text-sm text-gray-700 text-center"
+                >
                   No results found.
                 </td>
               </tr>
@@ -140,7 +148,11 @@ const Table = ({ data }) => {
       </div>
 
       {/* Pagination */}
-      <Pagination totalPages={totalPages} paginate={paginate} currentPage={currentPage} />
+      <Pagination
+        totalPages={totalPages}
+        paginate={paginate}
+        currentPage={currentPage}
+      />
     </div>
   );
 };

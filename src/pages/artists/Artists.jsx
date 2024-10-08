@@ -8,13 +8,13 @@ const Artists = () => {
 
   return (
     <div className="p-3">
-    <h1 className="text-3xl font-semibold mb-6 text-gray-200">Artists</h1>
-    {streamData.length === 0 ? (
-      <p>No artists available.</p>
-    ) : (
-      <Table data={streamData} />
-    )}
-  </div>
+      <h1 className="text-3xl font-semibold mb-6 text-gray-200">Artists</h1>
+      {streamData.length === 0 ? (
+        <p>No artists available.</p>
+      ) : (
+        <Table data={streamData} />
+      )}
+    </div>
   );
 };
 
