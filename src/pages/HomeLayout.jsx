@@ -23,17 +23,16 @@ const HomeLayout = () => {
   return (
     <div className="flex flex-col min-h-screen bg-main-bg text-main-color">
       <Navbar />
-      <div className="flex flex-grow overflow-hidden">
-        <div className="w-64 border-r-2 border-soft-bg hidden lg:block">
+      {/* Mobile Menu with Icons Only */}
+      <div className="lg:hidden flex items-center justify-center">
+        <Menu iconsOnly={true} />
+      </div>
+      <div className="flex flex-grow">
+        <div className="w-40 border-r-2 mt-7 border-soft-bg hidden lg:flex">
           <Menu />
         </div>
-        <div className="flex-grow p-5 flex">
-          <div className="flex-1 lg:hidden">
-            <Menu />
-          </div>
-          <div className="flex-grow">
-            <Outlet />
-          </div>
+        <div className="p-5 flex-grow overflow-x-auto">
+          <Outlet />
         </div>
       </div>
       <Footer />

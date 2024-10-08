@@ -35,13 +35,38 @@ const Table = ({ data }) => {
     }));
   };
 
-  const filteredData = data.filter(
-    (item) =>
-      item.artist_name.toLowerCase().includes(filter.artist.toLowerCase()) &&
-      item.song_name.toLowerCase().includes(filter.songName.toLowerCase())
-  );
+  const getSortedArray = (arrayToSort) => {
+    return [...arrayToSort].sort((a, b) => {
+      const aValue = a[sort.keyToSort];
+      const bValue = b[sort.keyToSort];
+      // if (aValue < bValue) return sort.direction === "asc" ? -1 : 1;
+      // if (aValue > bValue) return sort.direction === "asc" ? 1 : -1;
+      // return 0;
 
-  const sortedData = filteredData.length ? filteredData : data;
+      if (typeof aValue === "number" && typeof bValue === "number") {
+        if (aValue < bValue) return sort.direction === "asc" ? -1 : 1;
+        if (aValue > bValue) return sort.direction === "asc" ? 1 : -1;
+        return 0;
+      }
+
+      const aStr = String(aValue).toLowerCase();
+      const bStr = String(bValue).toLowerCase();
+
+      if (aStr < bStr) return sort.direction === "asc" ? -1 : 1;
+      if (aStr > bStr) return sort.direction === "asc" ? 1 : -1;
+      return 0;
+    });
+  };
+
+  const filteredData = data.filter((item) => {
+    const artistMatch = item.artist_name.toLowerCase().includes(filter.artist.toLowerCase());
+    const songNameMatch = item.song_name.toLowerCase().includes(filter.songName.toLowerCase());
+    
+    return artistMatch && songNameMatch;
+  });
+
+ 
+  const sortedData = getSortedArray(filteredData);
   const { currentPage, totalPages, currentItems, paginate } = usePagination(
     sortedData,
     itemsPerPage
@@ -49,7 +74,7 @@ const Table = ({ data }) => {
 
   return (
     <div className="p-6 bg-white shadow-lg rounded-lg">
-      <div className="filter-container mb-4 flex gap-4">
+      <div className="mb-4 flex flex-col sm:flex-row gap-4 ">
         <InputField
           type="text"
           placeholder="Filter by artist"
@@ -71,8 +96,8 @@ const Table = ({ data }) => {
       </div>
 
       <div className="overflow-x-auto">
-        <table className="min-w-full border border-gray-200 bg-gray-100 text-left rounded-lg">
-          <thead className="bg-gray-800 text-white">
+        <table className="min-w-full border border-gray-200 bg-gray-100 text-left">
+          <thead className="bg-gray-800 text-gray-200">
             <tr>
               {headers.map((header) => (
                 <th
@@ -110,9 +135,9 @@ const Table = ({ data }) => {
                           <img
                             src={row.image_url}
                             alt={row.artist_name}
-                            className="w-10 h-10 rounded-full mr-3 object-cover"
+                            className="w-10 h-10 rounded-full mr-3 object-cover "
                           />
-                          <span>{row.artist_name}</span>
+                          <span className="whitespace-nowrap">{row.artist_name}</span>
                         </div>
                       ) : header.KEY === "artist_id" ? (
                         <div className="flex items-center">

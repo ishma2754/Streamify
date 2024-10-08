@@ -5,7 +5,7 @@ export const fetchStreamifyData = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const response = await fetch(
-        "https://mocki.io/v1/f88a5120-8892-473e-bc2d-2f8aa27334f8"
+        "https://mocki.io/v1/9fb58a6a-e72d-4918-a9ae-64ec59f84e65"
       );
 
       if (!response.ok) {
@@ -13,7 +13,6 @@ export const fetchStreamifyData = createAsyncThunk(
       }
 
       const data = await response.json();
-      console.log('Fetched Data:', data);
       return data;
     } catch (error) {
       return rejectWithValue("Network error: " + error.message);

@@ -9,12 +9,6 @@ export const menu = [
         url: "/",
         icon: "home.svg",
       },
-      {
-        id: 2,
-        title: "Profile",
-        url: "/artists/1",
-        icon: "user.svg",
-      },
     ],
   },
   {
