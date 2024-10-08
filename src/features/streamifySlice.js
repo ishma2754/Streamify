@@ -5,7 +5,7 @@ export const fetchStreamifyData = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const response = await fetch(
-        "https://af71fa797f2242778ec3bf0e0f639606.api.mockbin.io/"
+        "https://mocki.io/v1/f88a5120-8892-473e-bc2d-2f8aa27334f8"
       );
 
       if (!response.ok) {
@@ -13,7 +13,7 @@ export const fetchStreamifyData = createAsyncThunk(
       }
 
       const data = await response.json();
-      console.log(data)
+      console.log('Fetched Data:', data);
       return data;
     } catch (error) {
       return rejectWithValue("Network error: " + error.message);
@@ -39,6 +39,7 @@ export const streamifySlice = createSlice({
       .addCase(fetchStreamifyData.fulfilled, (state, action) => {
         state.loading = false;
         state.data = action.payload;
+        
       })
       .addCase(fetchStreamifyData.rejected, (state, action) => {
         state.loading = false;

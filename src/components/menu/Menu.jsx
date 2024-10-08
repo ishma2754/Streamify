@@ -1,6 +1,3 @@
-
-
-
 import { Link } from "react-router-dom";
 import { menu } from "../../data";
 
@@ -14,7 +11,7 @@ const Menu = () => {
           </span>
           {item.listItems.map((listItem) => (
             <Link 
-              to="/" 
+              to={listItem.url}
               className="flex items-center gap-2 p-2 rounded hover:bg-soft-bg" 
               key={listItem.id}
             >

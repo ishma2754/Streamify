@@ -1,30 +1,37 @@
-import { topDealUsers } from "../../data";
+import { useSelector } from "react-redux";
 
 const TopBox = () => {
+  const { data } = useSelector((state) => state.streamify); 
+  if(!data) return null;
+  const topStreamingSongs = data.streaming_data ? data.streaming_data.slice(0, 7) : []; 
+
   return (
     <div className="topBox">
-      <h1 className="mb-5">Top Deals</h1>
+      <h1 className="mb-5">Top Streaming Songs</h1>
       <div className="list">
-        {topDealUsers.map((user) => (
+        {topStreamingSongs.map((song) => (
           <div
             className="flex items-center justify-between mb-7 listItem"
-            key={user.id}
+            key={song.artist_id} 
           >
             <div className="flex gap-5 user">
               <img
-                src={user.img}
-                alt=""
+                src={song.image_url} 
+                alt={song.artist_name}
                 className="w-10 h-10 rounded-full object-cover"
               />
               <div className="flex flex-col gap-1 userTexts">
                 <span className="font-medium text-sm username">
-                  {user.username}
+                  {song.artist_name} 
                 </span>
-                <span className="text-xs email">{user.email}</span>
+                <span className="text-xs email">
+                  {song.song_name} 
+                </span>
               </div>
             </div>
-            <span className="font-medium amount ml-4">${user.amount}</span>{" "}
-            {/* Added margin-left here */}
+            <span className="font-medium amount ml-4">
+              {song.streams.toLocaleString()} 
+            </span>
           </div>
         ))}
       </div>

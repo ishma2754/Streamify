@@ -1,67 +1,74 @@
 import {
-    AreaChart,
-    Area,
-    XAxis,
-    YAxis,
-    Tooltip,
-    ResponsiveContainer,
-  } from "recharts";
-  
-  const data = [
-    { name: "Sun", books: 4000, clothes: 2400, electronic: 2400 },
-    { name: "Mon", books: 3000, clothes: 1398, electronic: 2210 },
-    { name: "Tue", books: 2000, clothes: 9800, electronic: 2290 },
-    { name: "Wed", books: 2780, clothes: 3908, electronic: 2000 },
-    { name: "Thu", books: 1890, clothes: 4800, electronic: 2181 },
-    { name: "Fri", books: 2390, clothes: 3800, electronic: 2500 },
-    { name: "Sat", books: 3490, clothes: 4300, electronic: 2100 },
-  ];
-  
-  const BigChartBox = () => {
-    return (
-      <div className="w-full h-full flex flex-col justify-between">
-        <h1 className="text-lg font-bold">Revenue Analytics</h1>
-        <div className="w-full h-[300px]">
-          <ResponsiveContainer width="99%" height="100%">
-            <AreaChart
-              data={data}
-              margin={{
-                top: 10,
-                right: 30,
-                left: 0,
-                bottom: 0,
-              }}
-            >
-              <XAxis dataKey="name" />
-              <YAxis />
-              <Tooltip />
-              <Area
-                type="monotone"
-                dataKey="electronic"
-                stackId="1"
-                stroke="#8884d8"
-                fill="#8884d8"
-              />
-              <Area
-                type="monotone"
-                dataKey="clothes"
-                stackId="1"
-                stroke="#82ca9d"
-                fill="#82ca9d"
-              />
-              <Area
-                type="monotone"
-                dataKey="books"
-                stackId="1"
-                stroke="#ffc658"
-                fill="#ffc658"
-              />
-            </AreaChart>
-          </ResponsiveContainer>
-        </div>
+  AreaChart,
+  Area,
+  XAxis,
+  YAxis,
+  Tooltip,
+  ResponsiveContainer,
+} from "recharts";
+import { useSelector } from "react-redux";
+
+
+
+const BigChartBox = () => {
+  const { data } = useSelector((state) => state.streamify);
+  if (!data) return null;
+
+  const combinedData = data.active_users.monthly_data.map(
+    (activeUserData, index) => {
+      return {
+        month: activeUserData.month,
+        active_users: activeUserData.active_users,
+        registered_users:
+          data.registered_users.monthly_data[index].registered_users,
+        streams: data.streams.monthly_data[index].streams,
+      };
+    }
+  );
+
+  return (
+    <div className="w-full h-full flex flex-col justify-between">
+      <h1 className="text-lg font-bold">User Analytics</h1>
+      <div className="w-full h-[300px]">
+        <ResponsiveContainer width="99%" height="100%">
+          <AreaChart
+            data={combinedData}
+            margin={{
+              top: 10,
+              right: 30,
+              left: 0,
+              bottom: 0,
+            }}
+          >
+            <XAxis dataKey="month" />
+            <YAxis />
+            <Tooltip />
+            <Area
+              type="monotone"
+              dataKey="active_users"
+              stackId="1"
+              stroke="#8884d8"
+              fill="#8884d8"
+            />
+            <Area
+              type="monotone"
+              dataKey="registered_users"
+              stackId="1"
+              stroke="#82ca9d"
+              fill="#82ca9d"
+            />
+            <Area
+              type="monotone"
+              dataKey="streams"
+              stackId="1"
+              stroke="#ffc658"
+              fill="#ffc658"
+            />
+          </AreaChart>
+        </ResponsiveContainer>
       </div>
-    );
-  };
-  
-  export default BigChartBox;
-  
+    </div>
+  );
+};
+
+export default BigChartBox;

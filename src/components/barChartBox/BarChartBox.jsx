@@ -1,18 +1,42 @@
-import { BarChart, Bar, ResponsiveContainer, Tooltip } from "recharts";
+import { BarChart, Bar, ResponsiveContainer, Tooltip, XAxis } from "recharts";
+import { useSelector } from "react-redux";
 
-const BarChartBox = ({ data }) => {
+const getTopStreamedSongs = (data) => {
+  const sortedData = [...data].sort((a, b) => b.streams - a.streams);
+  const topSongs = sortedData.slice(0, 5).map((song) => ({
+    song_name: song.song_name,
+    streams: song.streams,
+    artist_name: song.artist_name,
+  }));
+  return topSongs;
+};
+
+const BarChartBox = () => {
+  const { data } = useSelector((state) => state.streamify);
+  if (!data || !data.streaming_data) return null;
+  const streamingData = data.streaming_data;
+  const topSongsData = getTopStreamedSongs(streamingData);
+
+  const barChartData = {
+    title: "Top 5 Streamed Songs",
+    dataKey: "streams",
+    color: "#8884d8",
+    chartData: topSongsData,
+  };
+
   return (
     <div className="w-full h-full">
-      <h1 className="text-xl mb-5">{data.title}</h1>
+      <h1 className="text-xl mb-5">{barChartData.title}</h1>
       <div className="chart">
         <ResponsiveContainer width="99%" height={150}>
-          <BarChart data={data.chartData}>
+          <BarChart data={barChartData.chartData}>
+            <XAxis dataKey="song_name" angle={-20} textAnchor="end" />
             <Tooltip
               contentStyle={{ background: "#2a3447", borderRadius: "0.5rem" }}
               labelStyle={{ display: "none" }}
               cursor={{ fill: "none" }}
             />
-            <Bar dataKey={data.dataKey} fill={data.color} />
+            <Bar dataKey={barChartData.dataKey} fill={barChartData.color} />
           </BarChart>
         </ResponsiveContainer>
       </div>

@@ -1,53 +1,62 @@
+import { useSelector } from "react-redux";
 import { PieChart, Pie, ResponsiveContainer, Cell, Tooltip } from "recharts";
+const PieChartBox = () => {
+  const { data } = useSelector((state) => state.streamify);
+  if (!data || !data.revenue) return null;
 
-const data = [
-  { name: "Premium Subscribers", value: 2.5, color: "#0088FE" },
-  { name: "Ad-Supported Users", value: 0.8, color: "#00C49F" },
-  { name: "Merchandise Sales", value: 0.15, color: "#FFBB28" },
-  { name: "Podcast Sponsorships", value: 0.35, color: "#FF8042" },
-  { name: "Other Sources", value: 0.1, color: "#FF5733" },
-];
-const totalRevenue = data.reduce((acc, item) => acc + item.value, 0);
-const PieChartBox = ({data}) => {
+  const revenue = data.revenue;
+
   return (
     <div className="h-full flex flex-col justify-between pieChartBox">
-      <h1 className="text-lg font-bold">Streamify Revenue Breakdown</h1>
+      <h1 className="text-lg font-bold">
+        Streamify Revenue Breakdown {revenue.total_revenue}B
+      </h1>
       <div className="flex items-center justify-center w-full h-full chart">
         <ResponsiveContainer width="99%" height={300}>
           <PieChart>
             <Tooltip
               contentStyle={{ background: "white", borderRadius: "5px" }}
               formatter={(value, name) => {
-                const percentage = ((value / totalRevenue) * 100).toFixed(1);
+                const sourceItem = revenue.sources.find(
+                  (item) => item.name === name
+                );
+                const percentage = (
+                  (sourceItem.value / revenue.total_revenue) *
+                  100
+                ).toFixed(1);
                 return [`${value}B (${percentage}%)`, name];
               }}
             />
             <Pie
-              data={data}
+              data={revenue.sources}
               innerRadius="70%"
               outerRadius="80%"
               fill="#8884d8"
               paddingAngle={5}
               dataKey="value"
             >
-              {data.map((item) => (
+              {revenue.sources.map((item) => (
                 <Cell key={item.name} fill={item.color} />
               ))}
             </Pie>
           </PieChart>
         </ResponsiveContainer>
       </div>
-      <div className="flex justify-between gap-2 options text-sm">
-        {data.map((item) => (
-          <div className="flex flex-col gap-2 option" key={item.name}>
-            <div className="flex items-center gap-2 title">
+      <div className="flex flex-col gap-3 mt-6 options text-sm">
+        {revenue.sources.map((item) => (
+          <div
+            className="flex justify-between items-center option"
+            key={item.name}
+          >
+            <div className="flex items-center gap-2">
               <div
-                className="w-2.5 h-2.5 rounded-full dot"
+                className="w-3 h-3 rounded-full"
                 style={{ backgroundColor: item.color }}
               />
-              <span>{item.name}</span>
+              <span className="font-medium">{item.name}</span>
             </div>
-            <span>{item.value}</span>
+
+            <span className="text-gray-200">{item.value}B</span>
           </div>
         ))}
       </div>

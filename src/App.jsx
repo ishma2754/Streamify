@@ -1,4 +1,4 @@
-import { HomeLayout, ErrorPage, Login, Artists, Home } from "./pages/index";
+import { HomeLayout, ErrorPage, Login, Artists, Home, SingleArtist } from "./pages/index";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 
 const router = createBrowserRouter([
@@ -12,9 +12,13 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: "/artists",
+        path: "artists",
         element: <Artists />,
       },
+      {
+        path: "artists/:id",
+        element: <SingleArtist/>
+      }
     ],
   },
   {

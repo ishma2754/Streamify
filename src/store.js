@@ -3,7 +3,7 @@ import streamifyReducer from "./features/streamifySlice";
 
 const store = configureStore({
     reducer: {
-        data: streamifyReducer,
+        streamify: streamifyReducer,
     }
 })
 
