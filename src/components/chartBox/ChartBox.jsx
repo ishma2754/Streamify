@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { LineChart, Line, ResponsiveContainer, Tooltip } from "recharts";
+import { formatNumber } from "../../utils";
 
 const ChartBox = ({ data }) => {
   if (!data) return null;
@@ -16,13 +17,15 @@ const ChartBox = ({ data }) => {
         </Link>
       </div>
       <div className="flex flex-col justify-between flex-1">
-        <div className="w-full h-full chart">
+        <div className="w-full h-full relative">
           <ResponsiveContainer width="99%" height="100%">
             <LineChart data={data.monthly_data}>
               <Tooltip
                 contentStyle={{ background: "transparent", border: "none" }}
                 labelStyle={{ display: "none" }}
-                position={{ x: 10, y: 60 }}
+                formatter={(value) => {
+                  return [formatNumber(value)];
+                }}
               />
               <Line
                 type="monotone"

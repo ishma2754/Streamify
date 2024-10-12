@@ -1,3 +1,4 @@
+import {formatNumber} from "../../utils/index"
 import {
   AreaChart,
   Area,
@@ -42,7 +43,14 @@ const BigChartBox = () => {
           >
             <XAxis dataKey="month" />
             <YAxis />
-            <Tooltip />
+            <Tooltip 
+              contentStyle={{ background: "transparent", border: "none" }}
+              labelStyle={{ display: "none" }}
+              formatter={(value, name) => {
+                return [formatNumber(value), name];
+              }}
+            
+            />
             <Area
               type="monotone"
               dataKey="active_users"

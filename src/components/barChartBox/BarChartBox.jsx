@@ -25,18 +25,18 @@ const BarChartBox = () => {
   };
 
   return (
-    <div className="w-full h-full">
+    <div className="w-full h-full ">
       <h1 className="text-xl mb-5">{barChartData.title}</h1>
-      <div className="chart">
+      <div className="">
         <ResponsiveContainer width="99%" height={300}>
           <BarChart data={barChartData.chartData}>
-            <XAxis dataKey="song_name"  tick={{ fontSize: 12}} angle={-20} />
+            <XAxis dataKey="song_name" tick={{ fontSize: 15 }} angle={-20} />
             <Tooltip
               contentStyle={{ background: "#2a3447", borderRadius: "0.5rem" }}
               labelStyle={{ display: "none" }}
               cursor={{ fill: "none" }}
             />
-            <Bar dataKey={barChartData.dataKey} fill={barChartData.color}/>
+            <Bar dataKey={barChartData.dataKey} fill={barChartData.color} />
           </BarChart>
         </ResponsiveContainer>
       </div>

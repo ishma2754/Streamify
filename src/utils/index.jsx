@@ -1,9 +1,10 @@
-export const getTopStreamedSongs = (data) => {
-    const sortedData = [...data].sort((a, b) => b.streams - a.streams);
-    const topSongs = sortedData.slice(0, 5).map((song) => ({
-      song_name: song.song_name,
-      streams: song.streams,
-      artist_name: song.artist_name,
-    }));
-    return topSongs;
-  };
+
+export const formatNumber = (num) => {
+  if (num >= 1e9) {
+    return `${(num / 1e9).toFixed(2)}B`;
+  } else if (num >= 1e6) {
+    return `${(num / 1e6).toFixed(2)}B`;
+  } else {
+    return num.toString();
+  }
+};

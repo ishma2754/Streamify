@@ -7,15 +7,15 @@ const PieChartBox = () => {
   const revenue = data.revenue;
 
   return (
-    <div className="h-full flex flex-col justify-between pieChartBox">
+    <div className="h-full flex flex-col  justify-between">
       <h1 className="text-lg font-bold">
         Streamify Revenue Breakdown {revenue.total_revenue}B
       </h1>
-      <div className="flex items-center justify-center w-full h-full chart">
-        <ResponsiveContainer width="99%" height={300}>
+      <div className="flex items-center justify-center w-full h-full">
+        <ResponsiveContainer width="100%" height="100%">
           <PieChart>
             <Tooltip
-              contentStyle={{ background: "white", borderRadius: "5px" }}
+              contentStyle={{ background: "white", borderRadius: "5px"}}
               formatter={(value, name) => {
                 const sourceItem = revenue.sources.find(
                   (item) => item.name === name
@@ -42,7 +42,7 @@ const PieChartBox = () => {
           </PieChart>
         </ResponsiveContainer>
       </div>
-      <div className="flex flex-col gap-3 mt-6 options text-sm">
+      <div className="flex flex-col gap-3 mt-6 options text-md">
         {revenue.sources.map((item) => (
           <div
             className="flex justify-between items-center option"

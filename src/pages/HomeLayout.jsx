@@ -21,21 +21,29 @@ const HomeLayout = () => {
   }
 
   return (
-    <div className="flex flex-col min-h-screen bg-main-bg text-main-color">
-      <Navbar />
-      {/* Mobile Menu with Icons Only */}
-      <div className="lg:hidden flex items-center justify-center">
-        <Menu iconsOnly={true} />
+    <div className="flex flex-col min-h-screen  bg-gray-900 text-gray-100">
+      {/* Background */}
+      <div className="fixed inset-0 z-0">
+        <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 opacity-80" />
+        <div className="absolute inset-0"/>
       </div>
-      <div className="flex flex-grow">
-        <div className="w-40 border-r-2 mt-7 border-soft-bg hidden lg:flex">
-          <Menu />
+
+      <div className="z-10">
+        <Navbar />
+        {/* Mobile Menu with Icons Only */}
+        <div className="lg:hidden flex items-center justify-center">
+          <Menu iconsOnly={true} />
         </div>
-        <div className="p-5 flex-grow overflow-x-auto">
-          <Outlet />
+        <div className="flex flex-grow">
+          <div className="w-40 border-r-2 mt-7 border-soft-bg hidden lg:flex">
+            <Menu />
+          </div>
+          <div className="p-5 flex-grow overflow-x-auto">
+            <Outlet />
+          </div>
         </div>
+        <Footer />
       </div>
-      <Footer />
     </div>
   );
 };
