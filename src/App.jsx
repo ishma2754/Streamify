@@ -7,6 +7,8 @@ const ErrorPage = lazy(() => import("./pages/ErrorPage"));
 const Artists = lazy(() => import("./pages/artists/Artists"));
 const Home = lazy(() => import("./pages/home/Home"));
 const SingleArtist = lazy(() => import("./pages/singleArtist/SingleArtist"));
+const Users = lazy(() => import("./pages/users/Users"))
+const Settings = lazy(() => import("./pages/settings/Settings"))
 
 const router = createBrowserRouter([
   {
@@ -46,6 +48,22 @@ const router = createBrowserRouter([
           </Suspense>
         ),
       },
+      {
+        path: "users",
+        element: (
+          <Suspense fallback={<Loader/>}>
+            <Users/>
+          </Suspense>
+        )
+      },
+      {
+        path: "settings",
+        element: (
+          <Suspense fallback={<Loader/>}>
+            <Settings/>
+          </Suspense>
+        )
+      }
     ],
   },
 ]);

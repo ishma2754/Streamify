@@ -29,18 +29,16 @@ export const menu = [
     listItems: [
       {
         id: 1,
-        title: "Charts",
-        url: "/",
+        title: "Users",
+        url: "/users",
         icon: "chart.svg",
       },
       {
         id: 2,
-        title: "Logs",
-        url: "/",
-        icon: "log.svg",
+        title: "Settings",
+        url: "/settings",
+        icon: "settings.svg",
       },
     ],
   },
 ];
-
-
