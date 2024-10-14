@@ -13,9 +13,9 @@ const Artist = ({ singleArtist }) => {
   if (!singleArtist) return null;
 
   const socialMediaIcons = {
-    Instagram: <FaInstagram className="text-pink-500" />,
-    Twitter: <FaTwitter className="text-blue-500" />,
-    Facebook: <FaFacebook className="text-blue-500" />,
+    Instagram: <FaInstagram className="text-pink-500 dark:text-[#ff4081]" />,
+    Twitter: <FaTwitter className="text-blue-500 dark:text-[#1da1f2]" />,
+    Facebook: <FaFacebook className="text-blue-500 dark:text-[#3b5998]" />,
   };
 
   return (
@@ -30,14 +30,14 @@ const Artist = ({ singleArtist }) => {
                 className="w-24 h-24 rounded-2xl object-cover"
               />
             )}
-            <h1 className="font-medium text-2xl text-[#f45b69] lg:text-xl">
+            <h1 className="font-medium text-2xl dark:text-[#f45b69] lg:text-xl text-[#333333]">
               {singleArtist.title}
             </h1>
           </div>
           <div className="details text-lg mt-4">
             {Object.entries(singleArtist.info).map((item) => (
               <div className="item my-4" key={item[0]}>
-                <span className="itemTitle font-semibold mr-2 capitalize text-[#f45b69]">
+                <span className="itemTitle font-semibold mr-2 capitalize dark:text-[#f45b69] text-[#333333]">
                   {item[0]}
                 </span>
                 <span className="itemValue text-sm">{item[1]}</span>
@@ -45,16 +45,15 @@ const Artist = ({ singleArtist }) => {
             ))}
           </div>
 
-          {/* Latest Album and Song */}
           <div className="latest mt-8">
-            <h2 className="text-lg font-semibold text-[#f45b69]">
+            <h2 className="text-lg font-semibold dark:text-[#f45b69] text-[#333333]">
               Latest Album
             </h2>
             <p className="text-sm">
               {singleArtist.latest_album.title} (Released:{" "}
               {singleArtist.latest_album.release_date})
             </p>
-            <h2 className="text-lg font-semibold mt-4 text-[#f45b69]">
+            <h2 className="text-lg font-semibold mt-4 dark:text-[#f45b69] text-[#333333]">
               Latest Song
             </h2>
             <p className="text-sm">
@@ -63,9 +62,8 @@ const Artist = ({ singleArtist }) => {
             </p>
           </div>
 
-          {/* Social Media Followers */}
           <div className="social-media mt-8">
-            <h2 className="text-lg font-semibold text-[#f45b69]">
+            <h2 className="text-lg font-semibold dark:text-[#f45b69] text-[#333333]">
               Social Media Followers
             </h2>
             <ul className="list-none">
@@ -82,7 +80,7 @@ const Artist = ({ singleArtist }) => {
           </div>
         </div>
 
-        <hr className="border-gray-300 w-9/12 my-5" />
+        <hr className="border-gray-300 dark:border-gray-400 w-9/12 my-5" />
 
         {singleArtist.chart && (
           <div className="chart mt-12 w-full md:w-4/5 h-96">
@@ -116,21 +114,22 @@ const Artist = ({ singleArtist }) => {
       </div>
 
       <div className="flex-1">
-        <h2 className="mb-5 text-xl font-semibold text-white">
+        <h2 className="mb-5 text-xl font-semibold dark:text-white text-black">
           Latest Activities
         </h2>
         <div className="relative">
-          <div className="absolute left-6 top-0 h-full w-0.5 bg-[#f45b69]"></div>
+          <div className="absolute left-6 top-0 h-full w-0.5 dark:bg-[#f45b69] bg-[#716e6e] z-10"></div>
           <ul className="flex flex-col pl-5">
             {singleArtist.activities &&
               singleArtist.activities.map((activity) => (
                 <li key={activity.text} className="flex mb-4 relative">
-                  {/* Dot directly on the vertical line */}
-                  <div className="absolute left-0 top-20 transform translate-y-1 w-2.5 h-2.5 bg-[#f45b69] rounded-full" />
+                  <div className="absolute left-0 top-20 transform translate-y-1 w-2.5 h-2.5 dark:bg-[#f45b69] bg-[#656464] rounded-full" />
                   <div className="flex-1">
-                    <div className="p-4 rounded-md bg-[#f45b6810]">
-                      <p className="mb-1 text-white text-sm">{activity.text}</p>
-                      <time className="text-xs text-gray-400">
+                    <div className="p-4 rounded-md dark:bg-[#f45b6810] bg-white">
+                      <p className="mb-1 dark:text-white text-black text-sm">
+                        {activity.text}
+                      </p>
+                      <time className="text-xs dark:text-gray-400 text-gray-500">
                         {activity.time}
                       </time>
                     </div>
