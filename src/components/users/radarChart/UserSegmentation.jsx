@@ -16,7 +16,7 @@ const UserSegmentation = ({data}) => {
     <h2 className="text-xl font-semibold font-poppins text-gray-900 dark:text-gray-100 mb-4">
       User Segmentation
     </h2>
-    <div style={{ width: "100%", height: 300 }}>
+    <div style={{ width: "100%", height: 300 }} >
       <ResponsiveContainer>
         <RadarChart
           cx="50%"

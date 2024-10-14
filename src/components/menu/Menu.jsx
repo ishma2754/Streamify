@@ -50,7 +50,7 @@ export const menu = [
 
 const Menu = ({ iconsOnly }) => {
   return (
-    <div className={`menu ${iconsOnly ? "flex space-x-4" : "flex-col lg:pl-4"}`}>
+    <div className={`${iconsOnly ? "flex space-x-4 mt-2" : "flex-col lg:pl-4"}`}>
       {menu.map((item) => (
         <div
           className={`flex ${iconsOnly ? "flex-row" : "flex-col mb-5"} gap-2 `}

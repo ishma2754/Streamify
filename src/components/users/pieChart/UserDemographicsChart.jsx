@@ -10,6 +10,7 @@ import {
   const UserDemographicsChart = ({ data }) => {
     if (!data) return null;
     const COLORS = ["#8884d8", "#82ca9d", "#ffc658", "#ff8042", "#0088FE"];
+   
     return (
       <div className="">
         <h2 className="text-xl font-semibold font-poppins dark:text-gray-100 text-gray-900 mb-4">
@@ -25,8 +26,8 @@ import {
                 outerRadius={100}
                 fill="#8884d8"
                 dataKey="value"
-                label={({ name, percent }) =>
-                  `${name} ${(percent * 100).toFixed(0)}%`
+                label={({percent }) =>
+                  `${(percent * 100).toFixed(0)}%`
                 }
               >
                 {data.data.map((entry, index) => (
