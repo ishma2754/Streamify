@@ -1,9 +1,28 @@
-export {default as Navbar} from "./navbar/Navbar"
-export {default as Footer} from "./footer/Footer"
-export {default as Menu} from "./menu/Menu"
-export {default as Loader} from "./loader/Loader"
-export {default as Table} from "./table/Table"
-export {default as Direction} from "./table/Direction"
-export {default as Pagination} from "./pagination/Pagination"
-export {default as InputField} from "./inputField/InputField"
-export {default as Artist} from "./artist/Artist"
+export { default as Navbar } from "./navbar/Navbar";
+export { default as Footer } from "./footer/Footer";
+export { default as Menu } from "./menu/Menu";
+export { default as Loader } from "./loader/Loader";
+export { default as Table } from "./table/Table";
+export { default as Direction } from "./table/Direction";
+export { default as Pagination } from "./pagination/Pagination";
+export { default as InputField } from "./inputField/InputField";
+export { default as Artist } from "./artist/Artist";
+export { default as BarChartBox } from "../components/barChartBox/BarChartBox";
+export { default as BigChartBox } from "../components/bigChartBox/BigChartBox";
+export { default as ChartBox } from "../components/chartBox/ChartBox";
+export { default as PieChartBox } from "../components/pieChartBox/PieChartBox";
+export { default as TopBox } from "../components/topBox/TopBox";
+export { default as UserActivityHeatmap } from "../components/users/barChart/UserActivityHeatmap";
+export { default as UserRetentionChart } from "../components/users/lineChart/UserRetentionChart";
+export { default as ChannelPerformanceChart } from "../components/users/pieChart/ChannelPerformanceChart";
+export { default as UserDemographicsChart } from "../components/users/pieChart/UserDemographicsChart";
+export { default as UserSegmentation } from "../components/users/radarChart/UserSegmentation";
+export { default as ConnectedAccounts } from "../components/settings/ConnectedAccounts";
+export { default as DangerZone } from "../components/settings/DangerZone";
+export { default as Notifications } from "../components/settings/Notifications";
+export { default as Profile } from "../components/settings/Profile";
+export { default as Security } from "../components/settings/Security";
+export { default as SettingsSection } from "../components/settings/SettingsSection";
+export { default as Title } from "../components/settings/Title";
+export { default as ToggleSwitch } from "../components/settings/ToggleSwitch";
+export {default as ToggleTheme} from "../components/theme/ToggleTheme"

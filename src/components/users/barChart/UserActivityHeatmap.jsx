@@ -14,7 +14,7 @@ const UserActivityHeatmap = ({ data }) => {
   const timeSlots = Object.keys(data.colors);
   return (
     <div className="flex flex-col">
-      <h2 className="text-xl font-semibold text-gray-100 mb-4">
+      <h2 className="text-xl font-semibold font-poppins dark:text-gray-100 text-gray-900 mb-4">
         User Activity Heatmap
       </h2>
       <div className="w-full" style={{ height: 300 }}>

@@ -8,9 +8,9 @@ const Artists = () => {
 
   return (
     <div className="p-3">
-      <h1 className="text-3xl font-semibold mb-6 text-gray-200">Artists</h1>
+      <h1 className="text-3xl font-semibold font-poppins mb-6 dark:text-gray-200 text-gray-900">Artists</h1>
       {streamData.length === 0 ? (
-        <p>No artists available.</p>
+        <p className="text-xl font-semibold font-poppins  dark:text-gray-200 text-gray-900">No artists available.</p>
       ) : (
         <Table data={streamData} />
       )}

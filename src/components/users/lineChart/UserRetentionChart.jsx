@@ -25,13 +25,13 @@ const UserRetentionChart = ({ data }) => {
   return (
     <div>
         <div className="flex justify-between items-center">
-      <h2 className="lg:text-xl text-md font-semibold text-gray-100 mb-4">
+      <h2 className="lg:text-xl text-md font-semibold font-poppins text-gray-900 dark:text-gray-100 mb-4">
         User Retention
       </h2>
       <select
         onChange={handleChange}
         value={retentionPeriod}
-        className="mb-4 p-2 border border-none bg-gray-700 rounded lg:w-32 w-24"
+        className="mb-4 p-2 border border-gray-900 dark:border-none bg-gray-200 dark:bg-gray-700 rounded lg:w-32 w-24"
       >
         <option value="weekly">Weekly</option>
         <option value="monthly">Monthly</option>

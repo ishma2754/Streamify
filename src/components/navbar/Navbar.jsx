@@ -1,18 +1,23 @@
 import { Link } from "react-router-dom";
+import { FiBell } from "react-icons/fi";
+import { ToggleTheme } from "../../components/index";
 const Navbar = () => {
   return (
-    <div className="w-full p-5 flex items-center justify-between flex-wrap">
+    <div className="w-full p-5 flex items-center justify-between flex-wrap border-b-2  border-gray-200 dark:border-none">
       <div className="flex items-center font-bold gap-2">
         <Link to="/">
-          <span>Streamify</span>
+          <button className="px-5 py-3 rounded-md bg-blue-500 text-white font-bold">
+            Streamify
+          </button>
         </Link>
       </div>
       <div className="flex items-center gap-5">
-        <div className="relative">
+        <ToggleTheme />
+        <div className="relative group">
           <Link to="/settings">
-            <img src="/notifications.svg" alt="Notifications" />
+            <FiBell className="h-9 w-9 p-2 dark:text-gray-200 text-gray-900 transition-shadow duration-300 ease-in-out group-hover:bg-gray-200 group-active:bg-gray-200 dark:hover:bg-gray-700 rounded-full" />
           </Link>
-          <span className="absolute bg-red-600 text-white w-4 h-4 rounded-full flex items-center justify-center text-xs top-[-10px] right-[-10px]">
+          <span className="absolute bg-red-600 text-white w-4 h-4 rounded-full flex items-center justify-center text-xs top-[-5px] right-[-1px]">
             1
           </span>
         </div>

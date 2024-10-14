@@ -9,10 +9,10 @@ const ChartBox = ({ data }) => {
     <div className="flex h-full">
       <div className="flex flex-col justify-between flex-2">
         <div className="flex items-center title">
-          <span>{data.title}</span>
+          <span className="font-bold font-poppins">{data.title}</span>
         </div>
         <h1>{data.total}</h1>
-        <Link to="/" style={{ color: data.color }}>
+        <Link to="/users" style={{ color: data.color }}>
           View All
         </Link>
       </div>

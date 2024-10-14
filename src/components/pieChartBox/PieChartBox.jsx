@@ -34,6 +34,8 @@ const PieChartBox = () => {
               fill="#8884d8"
               paddingAngle={5}
               dataKey="value"
+              stroke="transparent"  
+               
             >
               {revenue.sources.map((item) => (
                 <Cell key={item.name} fill={item.color} />
@@ -56,7 +58,7 @@ const PieChartBox = () => {
               <span className="font-medium">{item.name}</span>
             </div>
 
-            <span className="text-gray-200">{item.value}B</span>
+            <span className="dark:text-gray-200 text-gray-900">{item.value}B</span>
           </div>
         ))}
       </div>

@@ -20,17 +20,17 @@ const BarChartBox = () => {
   const barChartData = {
     title: "Top 5 Streamed Songs",
     dataKey: "streams",
-    color: "#8884d8",
+    color: "#6366F1",
     chartData: topSongsData,
   };
 
   return (
     <div className="w-full h-full ">
-      <h1 className="text-xl mb-5">{barChartData.title}</h1>
+      <h1 className="text-xl mb-5 font-bold">{barChartData.title}</h1>
       <div className="">
         <ResponsiveContainer width="99%" height={300}>
           <BarChart data={barChartData.chartData}>
-            <XAxis dataKey="song_name" tick={{ fontSize: 15 }} angle={-20} />
+            <XAxis dataKey="song_name" tick={{ fontSize: 15 }} />
             <Tooltip
               contentStyle={{ background: "#2a3447", borderRadius: "0.5rem" }}
               labelStyle={{ display: "none" }}

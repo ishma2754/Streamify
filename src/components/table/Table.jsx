@@ -14,7 +14,6 @@ const Table = ({ data }) => {
   const [filter, setFilter] = useState({ artist: "", songName: "" });
   const itemsPerPage = 5;
 
-  // Update headers order
   const headers = [
     { id: 1, KEY: "artist_id", LABEL: "Artist ID" },
     { id: 2, KEY: "artist_name", LABEL: "Artist" },
@@ -57,8 +56,12 @@ const Table = ({ data }) => {
   };
 
   const filteredData = data.filter((item) => {
-    const artistMatch = item.artist_name.toLowerCase().includes(filter.artist.toLowerCase());
-    const songNameMatch = item.song_name.toLowerCase().includes(filter.songName.toLowerCase());
+    const artistMatch = item.artist_name
+      .toLowerCase()
+      .includes(filter.artist.toLowerCase());
+    const songNameMatch = item.song_name
+      .toLowerCase()
+      .includes(filter.songName.toLowerCase());
 
     return artistMatch && songNameMatch;
   });
@@ -70,7 +73,7 @@ const Table = ({ data }) => {
   );
 
   return (
-    <div className="p-6 bg-gray-800 shadow-lg rounded-lg">
+    <div className="p-6 dark:bg-gray-800 bg-gray-200 shadow-lg rounded-lg">
       <div className="mb-4 flex flex-col sm:flex-row gap-4 ">
         <InputField
           type="text"
@@ -93,8 +96,8 @@ const Table = ({ data }) => {
       </div>
 
       <div className="overflow-x-auto">
-        <table className="border  border-gray-700 bg-gray-900 text-left">
-          <thead className="bg-gray-600 text-gray-200 font-poppins">
+        <table className="border  dark:border-gray-700 border-gray-200 bg-gray-300 dark:bg-gray-900 text-left">
+          <thead className="dark:bg-gray-600 bg-gray-400 text-gray-900 dark:text-gray-200 font-poppins">
             <tr>
               {headers.map((header) => (
                 <th
@@ -115,17 +118,17 @@ const Table = ({ data }) => {
               ))}
             </tr>
           </thead>
-          <tbody className="bg-gray-900 divide-y divide-gray-700">
+          <tbody className="dark:bg-gray-900 bg-gray-300 divide-y divide-gray-100 dark:divide-gray-700">
             {currentItems.length > 0 ? (
               currentItems.map((row) => (
                 <tr
                   key={row.song_id}
-                  className="hover:bg-gray-800 transition-colors"
+                  className="dark:hover:bg-gray-800 hover:bg-gray-200 transition-colors"
                 >
                   {headers.map((header) => (
                     <td
                       key={header.id}
-                      className="px-4 py-2 text-sm sm:text-lg text-gray-300 min-w-[165px]"
+                      className="px-4 py-2 text-sm sm:text-lg dark:text-gray-300 text-gray-900 min-w-[165px]"
                     >
                       {header.KEY === "artist_name" ? (
                         <div className="flex-1 items-center">
@@ -134,16 +137,16 @@ const Table = ({ data }) => {
                             alt={row.artist_name}
                             className="w-10 h-10 rounded-full mr-3 object-cover"
                           />
-                          <span>
-                            {row.artist_name}
-                          </span>
+                          <span>{row.artist_name}</span>
                         </div>
                       ) : header.KEY === "artist_id" ? (
                         <div className="flex items-center">
-                          <span className="mr-2 w-10 text-right">{row.artist_id}</span>
+                          <span className="mr-2 w-10 text-right">
+                            {row.artist_id}
+                          </span>
                           <Link
                             to={`/artists/${row.artist_id}`}
-                            className="ml-2 text-blue-400 hover:underline"
+                            className="ml-2 dark:text-blue-400 text-blue-500 hover:underline"
                           >
                             <FaEye className="text-2xl" />
                           </Link>
@@ -159,7 +162,7 @@ const Table = ({ data }) => {
               <tr>
                 <td
                   colSpan={headers.length}
-                  className="px-4 py-2 text-sm sm:text-lg text-gray-400 text-center"
+                  className="px-4 py-2 text-sm sm:text-lg text-gray-900 dark:text-gray-400 text-center"
                 >
                   No results found.
                 </td>
@@ -180,4 +183,3 @@ const Table = ({ data }) => {
 };
 
 export default Table;
-

@@ -11,7 +11,7 @@ const Pagination = ({ totalPages, paginate, currentPage }) => {
               className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
                 currentPage === index + 1
                   ? "bg-blue-500 text-white"
-                  : "bg-gray-200 text-gray-700 hover:bg-blue-100"
+                  : "dark:bg-gray-200 bg-gray-300 text-gray-900 dark:text-gray-700 dark:hover:bg-blue-100 hover:bg-blue-200"
               }`}
             >
               {index + 1}

@@ -1,9 +1,7 @@
 import { useState } from "react";
 import { MdHelpOutline, MdAdd } from "react-icons/md";
-import { FaGoogle } from "react-icons/fa";
-import { FaInstagram } from "react-icons/fa";
-import { FaFacebook } from "react-icons/fa";
-import SettingsSection from "./SettingsSection";
+import { FaGoogle, FaInstagram, FaFacebook } from "react-icons/fa";
+import { SettingsSection } from "../../components/index";
 
 const ConnectedAccounts = () => {
   const [connectedAccounts, setConnectedAccounts] = useState([
@@ -35,13 +33,15 @@ const ConnectedAccounts = () => {
         >
           <div className="flex gap-1 items-center justify-center">
             {account.icon}
-            <span className="text-gray-300">{account.name}</span>
+            <span className="text-gray-900 dark:text-gray-300">
+              {account.name}
+            </span>
           </div>
           <button
             className={`px-3 py-1 rounded ${
               account.connected
-                ? "bg-green-600 hover:bg-green-700"
-                : "bg-gray-600 hover:bg-gray-700"
+                ? "dark:bg-green-600 text-gray-200 dark:text-gray-900 bg-green-500 hover:bg-green-400 dark:hover:bg-green-700"
+                : "dark:bg-gray-600 bg-gray-400 dark:text-gray-900 hover:bg-gray-200 dark:hover:bg-gray-700"
             } transition duration-200`}
             onClick={() => {
               setConnectedAccounts(
@@ -61,7 +61,7 @@ const ConnectedAccounts = () => {
           </button>
         </div>
       ))}
-      <button className="mt-4 flex items-center text-indigo-400 hover:text-indigo-300 transition duration-200">
+      <button className="mt-4 flex items-center text-indigo-600 hover:text-indigo-500  dark:text-indigo-400 dark:hover:text-indigo-300 transition duration-200">
         <MdAdd size={18} className="mr-2" /> Add Account
       </button>
     </SettingsSection>

@@ -3,30 +3,9 @@
 @tailwind utilities;
 
 @layer base {
- /* * {
-    @apply m-0 p-0 box-border;
-  } */
-
 
   .link{
     @apply no-underline text-current;
   }
 }
 
-/* @layer components {
-  .main {
-    @apply font-inter bg-main-bg text-main-color;
-  }
-
-  .container {
-    @apply flex;
-  }
-
-  .menuContainer {
-    @apply w-64 p-5 border-r-2 border-soft-bg;
-  }
-
-  .contentContainer {
-    @apply p-5 w-full;
-  }
-} */

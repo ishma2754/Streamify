@@ -44,7 +44,7 @@ const BigChartBox = () => {
         <select
           value={timeframe}
           onChange={(e) => setTimeframe(e.target.value)}
-          className="p-2 rounded w-32 bg-gray-700 border border-none" 
+          className="p-2 rounded w-32 bg-gray-200 dark:bg-gray-700 border border-gray-900 dark:border-none" 
         >
           <option value="monthly">Monthly</option>
           <option value="weekly">Weekly</option>
@@ -52,13 +52,13 @@ const BigChartBox = () => {
       </div>
 
       <div className="w-full h-[300px]">
-        <ResponsiveContainer width="99%" height="100%">
+        <ResponsiveContainer>
           <AreaChart
             data={combinedData}
             margin={{
               top: 10,
-              right: 30,
-              left: 0,
+              right: 20,
+              left: 30,
               bottom: 0,
             }}
           >
@@ -75,22 +75,22 @@ const BigChartBox = () => {
               type="monotone"
               dataKey="active_users"
               stackId="1"
-              stroke="#8884d8"
-              fill="#8884d8"
+              stroke="#6a5bd1" 
+              fill="#6a5bd1"
             />
             <Area
               type="monotone"
               dataKey="registered_users"
               stackId="1"
-              stroke="#82ca9d"
-              fill="#82ca9d"
+              stroke="#5aa973"
+              fill="#5aa973" 
             />
             <Area
               type="monotone"
               dataKey="streams"
               stackId="1"
-              stroke="#ffc658"
-              fill="#ffc658"
+              stroke="#e2a100"
+              fill="#e2a100" 
             />
           </AreaChart>
         </ResponsiveContainer>

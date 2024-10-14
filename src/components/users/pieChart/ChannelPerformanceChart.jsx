@@ -19,7 +19,7 @@ const ChannelPerformanceChart = ({data}) => {
   if (!data) return null;
   return (
     <div className="">
-      <h2 className="text-xl font-semibold text-gray-100 mb-4">
+      <h2 className="text-xl font-semibold font-poppins text-gray-900 dark:text-gray-100 mb-4">
         Streamify Performance
       </h2>
       <div style={{ width: "100%", height: 300 }}>

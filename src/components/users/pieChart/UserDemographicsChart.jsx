@@ -12,7 +12,7 @@ import {
     const COLORS = ["#8884d8", "#82ca9d", "#ffc658", "#ff8042", "#0088FE"];
     return (
       <div className="">
-        <h2 className="text-xl font-semibold text-gray-100 mb-4">
+        <h2 className="text-xl font-semibold font-poppins dark:text-gray-100 text-gray-900 mb-4">
           User Demographics
         </h2>
         <div style={{ width: "100%", height: 300 }}>
