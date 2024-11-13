@@ -5,7 +5,7 @@ export const fetchStreamifyData = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const response = await fetch(
-        "https://mocki.io/v1/4ae5c391-9ddb-4b39-8ea6-60e11d8bfdaa"
+        "https://mocki.io/v1/5ac5ddb6-71f1-45cf-a161-4ec5b68d6347"
       );
 
       if (!response.ok) {
